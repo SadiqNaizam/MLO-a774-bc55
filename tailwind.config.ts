@@ -1,7 +1,8 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
-	darkMode: ["class"],
+	darkMode: ["class"], // Kept as per original, allows for future .dark class utility styling if needed
 	content: [
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
@@ -51,20 +52,14 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
-				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
 				}
+        // Removed 'sidebar' color object as PRD designSystem.colorPalette.sidebar is null
 			},
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans], // Added 'Inter' as per PRD typography.primaryFont
+      },
 			borderRadius: {
-				lg: 'var(--radius)',
+				lg: 'var(--radius)', // Existing, maps to PRD 'rounded-lg' via --radius CSS var
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
@@ -92,5 +87,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate")], // Kept existing plugin
 } satisfies Config;
