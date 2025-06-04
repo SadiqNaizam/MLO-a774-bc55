@@ -1,14 +1,37 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import HeaderNav from '../components/layout/HeaderNav';
+import HeroSection from '../components/HeroSection/HeroSection';
+import FeatureGrid from '../components/Features/FeatureGrid';
+import FooterSection from '../components/layout/FooterSection';
 
-const Index = () => {
+/**
+ * IndexPage serves as the main landing page for the Paymint application.
+ * It aggregates key sections like the navigation header, hero introduction,
+ * feature highlights, and the footer.
+ *
+ * This component follows the LandingLayout template structure specified in the
+ * project requirements, organizing organisms into a cohesive single-page experience.
+ */
+const IndexPage: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <HeaderNav />
+      <main className="flex flex-col items-center flex-grow pt-16">
+        {/* 
+          The pt-16 class on <main> provides padding at the top 
+          to prevent content from being obscured by the fixed HeaderNav (h-16).
+          The 'items-center' class ensures that child sections are centered if they 
+          don't span the full width. We apply 'w-full' to child sections 
+          to make them take full width of the main container, allowing their internal 
+          max-width and centering logic (e.g., 'container mx-auto') to function correctly.
+        */}
+        <HeroSection className="w-full" />
+        <FeatureGrid className="w-full" />
+        {/* Additional page sections can be added here as needed */}
+      </main>
+      <FooterSection />
     </div>
   );
 };
 
-export default Index;
+export default IndexPage;
